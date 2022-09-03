@@ -4,27 +4,25 @@ import {
   Column,
   ManyToOne,
   JoinTable,
-  
 } from "typeorm";
 import Category from "./Category";
 
-@Entity("Products")
-class product {
+@Entity("products")
+export class Product {
   @PrimaryGeneratedColumn("uuid")
-  Id: string;
+  id: string;
 
   @Column()
-  Name: string;
+  name: string;
 
   @Column()
-  Price: number;
+  price: number;
 
   @Column()
-  Amount: number;
-  
+  amount: number;
+
   @Column()
-  
-  CategoryId: string;
+  category_Id: string;
 
   @Column()
   IsActive: boolean;
@@ -32,8 +30,8 @@ class product {
   @ManyToOne((type) => Category, (category) => category.product, {
     cascade: true,
   })
- @JoinTable()
+  @JoinTable({ name: "category_Id" })
   category: Category;
 }
 
-export default product;
+export default Product;

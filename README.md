@@ -1,2 +1,2 @@
-## api-Register
-# api desenvolvida em ultilizando node.js, typescript, typeorm, 
+# api-Register
+api desenvolvida em ultilizando node.js, typescript, typeorm 

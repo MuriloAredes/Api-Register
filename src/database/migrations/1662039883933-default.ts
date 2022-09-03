@@ -11,7 +11,7 @@ export class default1662039883933 implements MigrationInterface {
 
     await queryRunner.createTable(
       new Table({
-        name: 'Categories',
+        name: "categories",
         columns: [
           {
             name: "Id",
@@ -21,12 +21,18 @@ export class default1662039883933 implements MigrationInterface {
             default: "uuid_generate_v4()",
           },
           {
-            name: "Name",
+            name: "name",
             type: "varchar",
           },
           {
-            name: "Register",
-            type: "Timestamp",
+            name: "create_At",
+            type: "date",
+            default: "now()",
+          },
+          {
+            name: "update_At",
+            type: "date",
+            default: "now()",
           },
           {
             name: "IsActive",
@@ -37,7 +43,7 @@ export class default1662039883933 implements MigrationInterface {
     ),
       await queryRunner.createTable(
         new Table({
-          name: 'Products',
+          name: "products",
           columns: [
             {
               name: "id",
@@ -47,19 +53,19 @@ export class default1662039883933 implements MigrationInterface {
               default: "uuid_generate_v4()",
             },
             {
-              name: "Name",
+              name: "name",
               type: "varchar",
             },
             {
-              name: "Price",
+              name: "price",
               type: "float",
             },
             {
-              name: "Amount",
+              name: "amount",
               type: "int",
             },
             {
-              name: "CategoryId",
+              name: "category_Id",
               type: "uuid",
             },
             {
@@ -70,11 +76,11 @@ export class default1662039883933 implements MigrationInterface {
         })
       ),
       await queryRunner.createForeignKey(
-        "Products",
+        "products",
         new TableForeignKey({
-          columnNames: ["CategoryId"],
+          columnNames: ["Category_Id"],
           referencedColumnNames: ["Id"],
-          referencedTableName: "Categories",
+          referencedTableName: "categories",
           onDelete: "CASCADE",
         })
       );
@@ -83,7 +89,7 @@ export class default1662039883933 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable("Products");
     await queryRunner.dropTable("Categories");
-    await queryRunner.dropForeignKey("Produtos", "CategoryId");
+    await queryRunner.dropForeignKey("Produtos", "Category_Id");
     await queryRunner.query('DROP EXTENSION "uuid-ossp"');
   }
 }

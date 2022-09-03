@@ -1,23 +1,36 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, Timestamp } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToMany,
+  Timestamp,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import Product from "./Product";
 
-@Entity("Categories")
-class Category {
+@Entity("categories")
+export class Category {
   @PrimaryGeneratedColumn("uuid")
-  Id: string;
+  id: string;
 
   @Column()
-  Name: string;
+  name: string;
 
   @Column()
-  Register: Timestamp;
-
-  @Column()
-  IsActive: boolean;
+  isActive: boolean;
 
   @OneToMany((type) => Product, (product) => product.category)
   product: Product[];
 
+  @Column()
+  @CreateDateColumn()
+  create_At: Date;
+
+  @Column()
+  @UpdateDateColumn()
+  update_At: Date;
 }
 
 export default Category;
