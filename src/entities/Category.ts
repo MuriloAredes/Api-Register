@@ -3,34 +3,33 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
-  ManyToMany,
-  Timestamp,
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
 import Product from "./Product";
 
-@Entity("categories")
+@Entity({name: "Categories"})
+
 export class Category {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({name: "name"})
   name: string;
 
-  @Column()
+  @Column({name:"isActive",default: true })
   isActive: boolean;
 
-  @OneToMany((type) => Product, (product) => product.category)
-  product: Product[];
-
-  @Column()
-  @CreateDateColumn()
+  @Column({name:"create_At"})
+  @CreateDateColumn({name:"create_At" ,default: null })
   create_At: Date;
 
-  @Column()
-  @UpdateDateColumn()
+  @Column({name:"update_At"})
+  @UpdateDateColumn({default: null })
   update_At: Date;
+
+  @OneToMany(() => Product, (product) => product.Category)
+    product: Product[]
 }
 
 export default Category;

@@ -11,10 +11,10 @@ export class default1662039883933 implements MigrationInterface {
 
     await queryRunner.createTable(
       new Table({
-        name: "categories",
+        name: "Categories",
         columns: [
           {
-            name: "Id",
+            name: "id",
             type: "uuid",
             isPrimary: true,
             generationStrategy: "uuid",
@@ -35,7 +35,7 @@ export class default1662039883933 implements MigrationInterface {
             default: "now()",
           },
           {
-            name: "IsActive",
+            name: "isActive",
             type: "bit",
           },
         ],
@@ -43,7 +43,7 @@ export class default1662039883933 implements MigrationInterface {
     ),
       await queryRunner.createTable(
         new Table({
-          name: "products",
+          name: "Products",
           columns: [
             {
               name: "id",
@@ -69,18 +69,20 @@ export class default1662039883933 implements MigrationInterface {
               type: "uuid",
             },
             {
-              name: "IsActive",
+              name: "isActive",
               type: "bit",
             },
           ],
+         
         })
       ),
+
       await queryRunner.createForeignKey(
-        "products",
+        "Products",
         new TableForeignKey({
-          columnNames: ["Category_Id"],
-          referencedColumnNames: ["Id"],
-          referencedTableName: "categories",
+          columnNames: ["category_Id"],
+          referencedColumnNames: ["id"],
+          referencedTableName: "Categories",
           onDelete: "CASCADE",
         })
       );
@@ -89,7 +91,7 @@ export class default1662039883933 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable("Products");
     await queryRunner.dropTable("Categories");
-    await queryRunner.dropForeignKey("Produtos", "Category_Id");
+    await queryRunner.dropForeignKey("Produtos", "category_Id");
     await queryRunner.query('DROP EXTENSION "uuid-ossp"');
   }
 }

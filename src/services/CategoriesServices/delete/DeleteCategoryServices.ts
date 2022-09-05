@@ -1,14 +1,22 @@
+import { singleton, inject } from "tsyringe";
 import { Repository } from "typeorm";
-import Category from "../../../entities/category";
+import { AppDataSource } from "../../../database/dataSource";
+import Category from "../../../entities/Category";
 
-class DeleteCategoryServices implements IDeleteCategoryServices {
-  private categoryRepository: Repository<Category>;
-  constructor(categoryRepo: Repository<Category>) {
-    this.categoryRepository = categoryRepo;
-  }
-  delete(id: string): void {
-    // if(!this.categoryRepository.findOne(id))
+@singleton()
+export default class DeleteCategoryServices {
+  private readonly repo :Repository<Category>
+                                    
+    constructor()
+    {
+      this.repo =  AppDataSource.getRepository(Category);
+    }
+  execute(id: string): void | Error{
+     if(!this.repo.findOne({where: {id}}))
+     {
+      return new Error("id nao encontrado");
+     }
 
-    this.categoryRepository.delete(id);
+    this.repo.delete(id);
   }
 }

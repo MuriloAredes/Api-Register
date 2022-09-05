@@ -1,13 +1,18 @@
+import { singleton } from 'tsyringe';
 import {DataSource } from 'typeorm';
+import Category from '../entities/Category';
+import { Product } from './../entities/Product';
 
-export const AppDataSource = new DataSource({
+
+
+export  const AppDataSource = new DataSource({
     type: "postgres" ,
     host: "localhost",
     port: 5432,
     username: "postgres",
     password: "secretpassword",
     database: "postgres",
-    entities: ["src/app/entities/*.ts"],
+    entities: [Category,Product],
     migrations: ["src/database/migrations/*.ts"],
     
 

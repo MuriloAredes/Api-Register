@@ -7,31 +7,30 @@ import {
 } from "typeorm";
 import Category from "./Category";
 
-@Entity("products")
+@Entity({name:"Products"})
 export class Product {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({name:"name"})
   name: string;
 
-  @Column()
+  @Column({name:"price"})
   price: number;
 
-  @Column()
+  @Column({name:"amount"})
   amount: number;
 
-  @Column()
+  @Column({name:"category_Id"})
   category_Id: string;
 
-  @Column()
-  IsActive: boolean;
+  @Column({name:"IsActive", default: true})
+  isActive: boolean;
 
-  @ManyToOne((type) => Category, (category) => category.product, {
-    cascade: true,
-  })
+  @ManyToOne(() => Category)
   @JoinTable({ name: "category_Id" })
-  category: Category;
+  Category: Category;
 }
 
 export default Product;
+ 

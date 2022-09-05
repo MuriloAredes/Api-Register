@@ -1,27 +1,37 @@
+import "reflect-metadata";
 import { Repository } from "typeorm";
-import { inject, injectable } from "tsyringe";
+import { singleton,inject } from "tsyringe";
 import { Category } from "./../../../entities/Category";
+import{AppDataSource} from "./../../../database/dataSource" 
 
-@injectable()
+
+
+
+
+@singleton()
 export default class CreateCategoryServices {
-  constructor(
-    @inject("Repository<Category>")
-    private categoryRepository: Repository<Category>
-  ) {}
+ private repo : Repository<Category>;
+  
+ 
+  constructor() {
+      this.repo = AppDataSource.getRepository(Category);
+  }
+    	
+  async execute(name:string, isActive:boolean): Promise<Category |Error> {
+    
+    const categoryResult = this.repo.findOne({where:{name}});
 
-  async execute({
-    name,
-    isActive,
-  }: createCategoryRequest): Promise<Category | Error> {
-    if (await this.categoryRepository.findOne({ where: { name } })) {
-      return new Error("Category already exists");
+    if(Category)
+    {
+      return new Error("")
     }
-    const category = this.categoryRepository.create({
-      name,
-      isActive,
-    });
 
-    await this.categoryRepository.save(category);
+    const category = this.repo.create({
+      name ,
+      isActive      
+    });
+   
+    await this.repo.save(category);
 
     return category;
   }
