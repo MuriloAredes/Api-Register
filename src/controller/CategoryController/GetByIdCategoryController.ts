@@ -15,7 +15,7 @@ export default class GetByIdCategoryController
 
        if(result instanceof Error)
        {
-         response.sendStatus(409)
+         response.sendStatus(409).json(result.message)
        }
        
        response.json(result)

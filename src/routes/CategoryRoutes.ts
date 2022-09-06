@@ -14,11 +14,11 @@ const getAllCategoryController = new GetAllCategoriesController();
 const getByIdCategoryController= new GetByIdCategoryController() 
 const updateCategoryController= new UpdateCategoryController()
 
-CategoryRouter.post('/category/register', createCategoryController.handle)
-CategoryRouter.delete('/category/:id', deleteCategoryController.handle)
-CategoryRouter.get('/category/all', getAllCategoryController.handle)
-CategoryRouter.put('/category/update/:id', updateCategoryController.handle)
-CategoryRouter.get('/category/getbyid/:id', getByIdCategoryController.handle)
+CategoryRouter.post('/register', createCategoryController.handle)
+CategoryRouter.delete('/:id', deleteCategoryController.handle)
+CategoryRouter.get('/all', getAllCategoryController.handle)
+CategoryRouter.put('/update/:id', updateCategoryController.handle)
+CategoryRouter.get('/getbyid/:id', getByIdCategoryController.handle)
 
 
 export default CategoryRouter ;

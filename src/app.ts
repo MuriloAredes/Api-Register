@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(CategoryRouter)
-app.use(ProductRouter);
+app.use("/category",CategoryRouter)
+app.use("/product",ProductRouter);
 
 app.listen(3000, () => console.log("server started at http//localhost:3000 "));
