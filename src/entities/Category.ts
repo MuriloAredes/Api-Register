@@ -28,7 +28,7 @@ export class Category {
   @UpdateDateColumn({default: null })
   update_At: Date;
 
-  @OneToMany(() => Product, (product) => product.Category)
+  @OneToMany(() => Product, (product) => product.category)
     product: Product[]
 }
 

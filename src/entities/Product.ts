@@ -24,12 +24,12 @@ export class Product {
   @Column({name:"category_Id"})
   category_Id: string;
 
-  @Column({name:"IsActive", default: true})
+  @Column({name:"isActive", default: true})
   isActive: boolean;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category ,(category) => category.product)
   @JoinTable({ name: "category_Id" })
-  Category: Category;
+  category: Category;
 }
 
 export default Product;

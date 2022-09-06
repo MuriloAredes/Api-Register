@@ -1,6 +1,6 @@
 import { Request,Response } from "express";
 import {autoInjectable, container} from 'tsyringe'
-import DeleteCategoryServices from './../services/CategoriesServices/delete/DeleteCategoryServices'
+import DeleteCategoryServices from '../../services/CategoriesServices/delete/DeleteCategoryServices'
 
 @autoInjectable()
 export default class DeleteCategoryController

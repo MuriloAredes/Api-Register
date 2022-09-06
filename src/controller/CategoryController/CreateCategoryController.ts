@@ -1,6 +1,6 @@
 import { Request,Response } from "express";
 import {autoInjectable, container} from 'tsyringe'
-import CreateCategoryService from './../services/CategoriesServices/create/CreateCategoryServices'
+import CreateCategoryService from '../../services/CategoriesServices/create/CreateCategoryServices'
 
 
 @autoInjectable()

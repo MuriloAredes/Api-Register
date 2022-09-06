@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import {autoInjectable, container} from 'tsyringe'
-import UpdateCategoryServices from "../services/CategoriesServices/update/UpdateCategoryServices";
-import {UpdateCategoryRequest}  from './../services/CategoriesServices/update/interface/UpdateCategoryRequest';
+import UpdateCategoryServices from "../../services/CategoriesServices/update/UpdateCategoryServices";
+import {UpdateCategoryRequest}  from '../../services/CategoriesServices/update/interface/UpdateCategoryRequest';
 
 
 @autoInjectable()

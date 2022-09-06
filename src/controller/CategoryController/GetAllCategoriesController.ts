@@ -1,6 +1,6 @@
 import { Request,Response } from "express";
 import {autoInjectable, container} from 'tsyringe'
-import { GetAllCategoriesServices } from '../services/CategoriesServices/GetAll/GetAllCategoriesServices';
+import { GetAllCategoriesServices } from '../../services/CategoriesServices/GetAll/GetAllCategoriesServices';
 
 @autoInjectable()
 export default class GetAllCategoriesController
