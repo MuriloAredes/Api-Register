@@ -1,8 +1,8 @@
 
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../../../database/dataSource';
-import { Category } from './../../../entities/Category';
-import { UpdateCategoryRequest } from './interface/UpdateCategoryRequest';
+import { Category } from '../../../entities/Category';
+
 
 
 

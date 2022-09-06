@@ -14,6 +14,7 @@ export  const AppDataSource = new DataSource({
     database: "postgres",
     entities: [Category,Product],
     migrations: ["src/database/migrations/*.ts"],
+    synchronize: true
     
 
 })

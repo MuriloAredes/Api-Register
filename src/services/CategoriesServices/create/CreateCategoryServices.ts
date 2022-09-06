@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import { Repository } from "typeorm";
 import { singleton,inject } from "tsyringe";
-import { Category } from "./../../../entities/Category";
-import{AppDataSource} from "./../../../database/dataSource" 
+import { Category } from "../../../entities/Category";
+import{AppDataSource} from "../../../database/dataSource" 
 
 
 
@@ -21,10 +21,10 @@ export default class CreateCategoryServices {
     
     const categoryResult = this.repo.findOne({where:{name}});
 
-    if(Category)
-    {
-      return new Error("")
-    }
+    // if(Category)
+    // {
+    //  return new Error("categoria existente")
+    // }
 
     const category = this.repo.create({
       name ,

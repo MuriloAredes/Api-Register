@@ -58,7 +58,7 @@ export class default1662039883933 implements MigrationInterface {
             },
             {
               name: "price",
-              type: "float",
+              type: "decimal",
             },
             {
               name: "amount",
@@ -76,22 +76,24 @@ export class default1662039883933 implements MigrationInterface {
          
         })
       ),
+      queryRunner.clearSqlMemory()
 
-      await queryRunner.createForeignKey(
-        "Products",
-        new TableForeignKey({
+           const  foreignKey = new TableForeignKey({
           columnNames: ["category_Id"],
           referencedColumnNames: ["id"],
           referencedTableName: "Categories",
           onDelete: "CASCADE",
         })
-      );
+        await queryRunner.createForeignKey("Products", foreignKey)
+
+
+     
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable("Products");
     await queryRunner.dropTable("Categories");
-    await queryRunner.dropForeignKey("Produtos", "category_Id");
+    await queryRunner.dropForeignKey("Products", "category_Id");
     await queryRunner.query('DROP EXTENSION "uuid-ossp"');
   }
 }
